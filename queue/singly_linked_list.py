@@ -49,3 +49,5 @@ class LinkedList:
             # update self.head 
             self.head = self.head.get_next()
             return value
+  
+

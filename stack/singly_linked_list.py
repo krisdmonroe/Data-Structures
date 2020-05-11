@@ -49,3 +49,18 @@ class LinkedList:
             # update self.head 
             self.head = self.head.get_next()
             return value
+
+    def remove_at_end(self):
+        # what if the list is empty?
+        if not self.head:
+            return None
+        # what if it isn't empty?
+        else:
+            # we want to return the value at the current head 
+            value = self.head.get_value()
+            # remove the value at the head 
+            # update self.head 
+            self.head = self.head.get_next()
+            return value
+
+          

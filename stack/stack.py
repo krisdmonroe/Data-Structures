@@ -34,5 +34,5 @@ class Stack:
             return None
         else:
                 self.size -= 1
-                return self.storage.remove_from_head()
+                return self.storage.remove_at_end()
         
