@@ -50,17 +50,23 @@ class LinkedList:
             self.head = self.head.get_next()
             return value
 
+  # i want to do the exact opposite order of remove from head
     def remove_at_end(self):
         # what if the list is empty?
         if not self.head:
             return None
         # what if it isn't empty?
         else:
-            # we want to return the value at the current head 
-            value = self.head.get_value()
-            # remove the value at the head 
-            # update self.head 
-            self.head = self.head.get_next()
-            return value
+          current = self.head
+          previous = current
+          # i want to get the most recent pushed number and return that value as well as remove that value
+          while current.get_next() is not None:
+            previous = current
+            current = current.get_next()
+          previous.set_next(None)
+          return current.value
+ 
 
-          
+
+
+
