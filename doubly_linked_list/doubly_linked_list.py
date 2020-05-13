@@ -97,23 +97,52 @@ class DoublyLinkedList:
     """Removes the input node from its current spot in the 
     List and inserts it as the new head node of the List."""
     def move_to_front(self, node):
+        # move from the tail to the head 
+        # delete the old tail
         self.delete(self.tail)
+        # add the node value to the method add to head
         self.add_to_head(node.value)
             
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List."""
     def move_to_end(self, node):
+        # move from the head to the tail
+        # delete the old tail
         self.delete(self.head)
+        # add the node value to the method add to tail
         self.add_to_tail(node.value)
             
 
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
     def delete(self, node):
-        pass
-            
+        # since we are removing change the length of the list
+        self.length -= 1
+        # if there is no head and no tail
+        if not self.head and not self.tail:
+            return None
+        # head and tail are the same means one node
+        if self.head == self.tail:
+            self.head = None
+            self.tail = None
+        # if the node is the head do this
+        elif self.head == node:
+            # set what your about to delete to the next in line since were at the head
+            self.head = self.head.next
+            # delete the node after 
+            node.delete()
+        # if the node is the tail do this
+        elif self.tail == node:
+            # since were at the tail set new tail to be the previous since were on tail
+            self.tail = self.tail.prev
+            # now delete that node
+            node.delete()
+        else:
+            # if not caught by any other if statments delete the node
+            node.delete()
         
+
     """Returns the highest value currently in the list"""
     def get_max(self):
         if not self.head:
@@ -122,10 +151,10 @@ class DoublyLinkedList:
         # set a max value and set a current value your searching with
         max_value = self.head.value
         current = self.head
-
         while current:
             if current.value > max_value:
                 max_value = current.value
-            
+            # find a way to continue the search
             current = current.next
+            # should search through everything and then return the max value
         return max_value
