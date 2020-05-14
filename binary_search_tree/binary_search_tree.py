@@ -1,3 +1,4 @@
+from collections import deque
 """
 Binary search trees are a data structure that enforce an ordering over 
 the data they store. That ordering in turn makes it a lot more efficient 
@@ -17,6 +18,7 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
+        # NO RETURNS BEACUSE WE DO NOT NEED TO SEND THE DATA BACK UP THE TREE
         # self will be the root of the tree
         # value greater
         if value >= self.value:
@@ -25,6 +27,7 @@ class BinarySearchTree:
                 # add the value to the search tree
                 self.right = BinarySearchTree(value)
             else:
+                # search through itself again with recursion
                 self.right.insert(value)
         # value less then
         else:
@@ -64,9 +67,12 @@ class BinarySearchTree:
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
+        # call fn and initate it with the value of that node wich in this case is self.value
         fn(self.value)
+        # keep going with the for_each until the left is none and then stop
         if self.left is not None:
             self.left.for_each(fn)
+        # keep going with the for_each until the right is none and then stop
         if self.right is not None:
             self.right.for_each(fn)
 
@@ -75,14 +81,21 @@ class BinarySearchTree:
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
+    # Inorder Traversal (Left-Root-Right)
     def in_order_print(self, node):
-        pass
-
+        if node.left is not None:
+            self.in_order_print(node.left)
+        print(node.value)
+        # keep going with the for_each until the right is none and then stop
+        if node.right is not None:
+            self.in_order_print(node.right)
+        
+    
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
-
+        queue = deque
+        
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
@@ -92,9 +105,23 @@ class BinarySearchTree:
     # Note: Research may be required
 
     # Print Pre-order recursive DFT
+    # Preorder Traversal (Root-Left-Right)
     def pre_order_dft(self, node):
-        pass
+        print(node.value)
+        if node.left is not None:
+            self.pre_order_dft(node.left)
+        # keep going with the for_each until the right is none and then stop
+        if node.right is not None:
+            self.pre_order_dft(node.right)
+        
 
     # Print Post-order recursive DFT
+    # Postorder Traversal (Left-Right-Root)
     def post_order_dft(self, node):
-        pass
+        if node.left is not None:
+            self.in_order_print(node.left)
+        # keep going with the for_each until the right is none and then stop
+        if node.right is not None:
+            self.in_order_print(node.right)
+        print(node.value)
+
