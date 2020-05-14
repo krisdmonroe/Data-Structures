@@ -19,7 +19,7 @@ class BinarySearchTree:
     def insert(self, value):
         # self will be the root of the tree
         # value greater
-        if value > self.value:
+        if value >= self.value:
             # if we reach the end
             if self.right is None:
                 # add the value to the search tree
