@@ -160,9 +160,9 @@ class BinarySearchTree:
     # Postorder Traversal (Left-Right-Root)
     def post_order_dft(self, node):
         if node.left is not None:
-            self.in_order_print(node.left)
+            self.post_order_dft(node.left)
         # keep going with the for_each until the right is none and then stop
         if node.right is not None:
-            self.in_order_print(node.right)
+            self.post_order_dft(node.right)
         print(node.value)
 
