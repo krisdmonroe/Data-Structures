@@ -83,6 +83,8 @@ class BinarySearchTree:
     # Hint:  Use a recursive, depth first traversal
     # Inorder Traversal (Left-Root-Right)
     def in_order_print(self, node):
+        if node is None:
+            return
         if node.left is not None:
             self.in_order_print(node.left)
         print(node.value)
@@ -94,12 +96,51 @@ class BinarySearchTree:
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        queue = deque
+        queue = deque()
+
+        # add the root node
+        queue.append(node)
+
+        # loop so long as the stack still has elements 
+        while len(queue) > 0:
+            current = queue.popleft()
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+
+            print(current.value)
+
+    #        # Depth-First traversal 
+    # # LIFO ordering of the tree elements 
+
+    # def breadth_first_for_each(self, fn):
+    #     queue = deque()
+
+    #     # add the root node
+    #     queue.append(self)
+
+    #     # loop so long as the stack still has elements 
+    #     while len(queue) > 0:
+    #         current = queue.popleft()
+    #         if current.left:
+    #             queue.append(current.left)
+    #         if current.right:
+    #             queue.append(current.right)
+
+    #         fn(current.value)
+        
         
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        print(node.value)
+        # keep going with the for_each until the right is none and then stop
+        if node.right is not None:
+            self.dft_print(node.right)
+        if node.left is not None:
+            self.dft_print(node.left)
+
 
     # Stretch Goals -------------------------
     # Note: Research may be required
